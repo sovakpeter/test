@@ -1,0 +1,28 @@
+{
+    "queries": {
+        "get_system_stats": {
+            "template": "SELECT 'online' as status, current_timestamp() as checked_at",
+            "description": "Basic system status check"
+        },
+        "get_table_sample": {
+            "template": "SELECT * FROM :table_name LIMIT :limit",
+            "description": "Sample rows from a table",
+            "table_ref": ":table_name",
+            "parameters": [
+                {
+                    "name": "table_name",
+                    "param_type": "table_ref",
+                    "required": true,
+                    "description": "Fully qualified table ref: catalog.schema.table"
+                },
+                {
+                    "name": "limit",
+                    "param_type": "integer",
+                    "required": false,
+                    "default": 100,
+                    "description": "Row limit"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "queries": {
+    "analytics.get_system_stats": {
+      "file": "analytics/get_system_stats.sql",
+      "description": "Basic system status check",
+      "parameters": [],
+      "cache_ttl": 0,
+      "tags": ["analytics", "system"]
+    },
+    "analytics.get_table_sample": {
+      "file": "analytics/get_table_sample.sql",
+      "description": "Sample rows from a table",
+      "parameters": [
+        {
+          "name": "table_name",
+          "param_type": "table_ref",
+          "required": true,
+          "description": "Fully qualified table ref: catalog.schema.table"
+        },
+        {
+          "name": "limit",
+          "param_type": "integer",
+          "required": false,
+          "default": 100,
+          "description": "Row limit"
+        }
+      ],
+      "cache_ttl": 0,
+      "tags": ["analytics", "sample"]
+    },
+    "schema.list_catalogs": {
+      "file": "schema/list_catalogs.sql",
+      "description": "List all accessible catalogs",
+      "parameters": [],
+      "cache_ttl": 0,
+      "tags": ["schema"]
+    },
+    "schema.list_schemas": {
+      "file": "schema/list_schemas.sql",
+      "description": "List schemas in a catalog",
+      "parameters": [
+        {"name": "catalog", "param_type": "string", "required": true}
+      ],
+      "cache_ttl": 0,
+      "tags": ["schema"]
+    },
+    "schema.list_tables": {
+      "file": "schema/list_tables.sql",
+      "description": "List tables in a schema",
+      "parameters": [
+        {"name": "catalog", "param_type": "string", "required": true},
+        {"name": "schema_name", "param_type": "string", "required": true}
+      ],
+      "cache_ttl": 0,
+      "tags": ["schema"]
+    },
+    "schema.table_columns": {
+      "file": "schema/table_columns.sql",
+      "description": "Get column definitions for a table",
+      "parameters": [
+        {"name": "catalog", "param_type": "string", "required": true},
+        {"name": "schema_name", "param_type": "string", "required": true},
+        {"name": "table_name", "param_type": "string", "required": true}
+      ],
+      "cache_ttl": 0,
+      "tags": ["schema", "columns"]
+    },
+    "schema.primary_keys": {
+      "file": "schema/primary_keys.sql",
+      "description": "Get primary key columns",
+      "parameters": [
+        {"name": "catalog", "param_type": "string", "required": true},
+        {"name": "schema_name", "param_type": "string", "required": true},
+        {"name": "table_name", "param_type": "string", "required": true}
+      ],
+      "cache_ttl": 0,
+      "tags": ["schema", "constraints"]
+    }
+  }
+}
